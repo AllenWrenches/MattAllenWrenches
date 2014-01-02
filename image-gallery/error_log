@@ -1,0 +1,707 @@
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_caddie' already exists
+CREATE TABLE `piwigo_caddie` ( `user_id` smallint(5) NOT NULL default '0', `element_id` mediumint(8) NOT NULL default '0', PRIMARY KEY  (`user_id`,`element_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_categories' already exists
+CREATE TABLE `piwigo_categories` ( `id` smallint(5) unsigned NOT NULL auto_increment, `name` varchar(255) NOT NULL default '', `id_uppercat` smallint(5) unsigned default NULL, `comment` text, `dir` varchar(255) default NULL, `rank` smallint(5) unsigned default NULL, `status` enum('public','private') NOT NULL default 'public', `site_id` tinyint(4) unsigned default NULL, `visible` enum('true','false') NOT NULL default 'true', `representative_picture_id` mediumint(8) unsigned default NULL, `uppercats` varchar(255) NOT NULL default '', `commentable` enum('true','false') NOT NULL default 'true', `global_rank` varchar(255) default NULL, `image_order` varchar(128) default NULL, `permalink` varchar(64) binary default NULL, PRIMARY KEY  (`id`), UNIQUE KEY `categories_i3` (`permalink`), KEY `categories_i2` (`id_uppercat`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_comments' already exists
+CREATE TABLE `piwigo_comments` ( `id` int(11) unsigned NOT NULL auto_increment, `image_id` mediumint(8) unsigned NOT NULL default '0', `date` datetime NOT NULL default '0000-00-00 00:00:00', `author` varchar(255) default NULL, `email` varchar(255) default NULL, `author_id` smallint(5) DEFAULT NULL, `anonymous_id` varchar(45) NOT NULL, `website_url` varchar(255) DEFAULT NULL, `content` longtext, `validated` enum('true','false') NOT NULL default 'false', `validation_date` datetime default NULL, PRIMARY KEY  (`id`), KEY `comments_i2` (`validation_date`), KEY `comments_i1` (`image_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_config' already exists
+CREATE TABLE `piwigo_config` ( `param` varchar(40) NOT NULL default '', `value` text, `comment` varchar(255) default NULL, PRIMARY KEY  (`param`) ) ENGINE=MyISAM COMMENT='configuration table' DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_favorites' already exists
+CREATE TABLE `piwigo_favorites` ( `user_id` smallint(5) NOT NULL default '0', `image_id` mediumint(8) unsigned NOT NULL default '0', PRIMARY KEY  (`user_id`,`image_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_group_access' already exists
+CREATE TABLE `piwigo_group_access` ( `group_id` smallint(5) unsigned NOT NULL default '0', `cat_id` smallint(5) unsigned NOT NULL default '0', PRIMARY KEY  (`group_id`,`cat_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_groups' already exists
+CREATE TABLE `piwigo_groups` ( `id` smallint(5) unsigned NOT NULL auto_increment, `name` varchar(255) NOT NULL default '', `is_default` enum('true','false') NOT NULL default 'false', PRIMARY KEY  (`id`), UNIQUE KEY `groups_ui1` (`name`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_history' already exists
+CREATE TABLE `piwigo_history` ( `id` int(10) unsigned NOT NULL auto_increment, `date` date NOT NULL default '0000-00-00', `time` time NOT NULL default '00:00:00', `user_id` smallint(5) NOT NULL default '0', `IP` varchar(15) NOT NULL default '', `section` enum('categories','tags','search','list','favorites','most_visited','best_rated','recent_pics','recent_cats') default NULL, `category_id` smallint(5) default NULL, `tag_ids` varchar(50) default NULL, `image_id` mediumint(8) default NULL, `summarized` enum('true','false') default 'false', `image_type` enum('picture','high','other') default NULL, PRIMARY KEY  (`id`), KEY `history_i1` (`summarized`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_history_summary' already exists
+CREATE TABLE `piwigo_history_summary` ( `year` smallint(4) NOT NULL default '0', `month` tinyint(2) default NULL, `day` tinyint(2) default NULL, `hour` tinyint(2) default NULL, `nb_pages` int(11) default NULL, UNIQUE KEY history_summary_ymdh (`year`,`month`,`day`,`hour`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_image_category' already exists
+CREATE TABLE `piwigo_image_category` ( `image_id` mediumint(8) unsigned NOT NULL default '0', `category_id` smallint(5) unsigned NOT NULL default '0', `rank` mediumint(8) unsigned default NULL, PRIMARY KEY  (`image_id`,`category_id`), KEY `image_category_i1` (`category_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_image_tag' already exists
+CREATE TABLE `piwigo_image_tag` ( `image_id` mediumint(8) unsigned NOT NULL default '0', `tag_id` smallint(5) unsigned NOT NULL default '0', PRIMARY KEY  (`image_id`,`tag_id`), KEY `image_tag_i1` (`tag_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_images' already exists
+CREATE TABLE `piwigo_images` ( `id` mediumint(8) unsigned NOT NULL auto_increment, `file` varchar(255) binary NOT NULL default '', `date_available` datetime NOT NULL default '0000-00-00 00:00:00', `date_creation` datetime default NULL, `name` varchar(255) default NULL, `comment` text, `author` varchar(255) default NULL, `hit` int(10) unsigned NOT NULL default '0', `filesize` mediumint(9) unsigned default NULL, `width` smallint(9) unsigned default NULL, `height` smallint(9) unsigned default NULL, `coi` char(4) default NULL COMMENT 'center of interest', `representative_ext` varchar(4) default NULL, `date_metadata_update` date default NULL, `rating_score` float(5,2) unsigned default NULL, `path` varchar(255) NOT NULL default '', `storage_category_id` smallint(5) unsigned default NULL, `level` tinyint unsigned NOT NULL default '0', `md5sum` char(32) default NULL, `added_by` smallint(5) NOT NULL default '0', `rotation` tinyint unsigned default null, PRIMARY K in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_languages' already exists
+CREATE TABLE `piwigo_languages` ( `id` varchar(64) NOT NULL default '', `version` varchar(64) NOT NULL default '0', `name` varchar(64) default NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_old_permalinks' already exists
+CREATE TABLE `piwigo_old_permalinks` ( `cat_id` smallint(5) unsigned NOT NULL default '0', `permalink` varchar(64) binary NOT NULL default '', `date_deleted` datetime NOT NULL default '0000-00-00 00:00:00', `last_hit` datetime default NULL, `hit` int(10) unsigned NOT NULL default '0', PRIMARY KEY  (`permalink`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_plugins' already exists
+CREATE TABLE `piwigo_plugins` ( `id` varchar(64) binary NOT NULL default '', `state` enum('inactive','active') NOT NULL default 'inactive', `version` varchar(64) NOT NULL default '0', PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_rate' already exists
+CREATE TABLE `piwigo_rate` ( `user_id` smallint(5) NOT NULL default '0', `element_id` mediumint(8) unsigned NOT NULL default '0', `anonymous_id` varchar(45) NOT NULL default '', `rate` tinyint(2) unsigned NOT NULL default '0', `date` date NOT NULL default '0000-00-00', PRIMARY KEY  (`element_id`,`user_id`,`anonymous_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_search' already exists
+CREATE TABLE `piwigo_search` ( `id` int(10) unsigned NOT NULL auto_increment, `last_seen` date default NULL, `rules` text, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_sessions' already exists
+CREATE TABLE `piwigo_sessions` ( `id` varchar(255) binary NOT NULL default '', `data` mediumtext NOT NULL, `expiration` datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_sites' already exists
+CREATE TABLE `piwigo_sites` ( `id` tinyint(4) NOT NULL auto_increment, `galleries_url` varchar(255) NOT NULL default '', PRIMARY KEY  (`id`), UNIQUE KEY `sites_ui1` (`galleries_url`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_tags' already exists
+CREATE TABLE `piwigo_tags` ( `id` smallint(5) unsigned NOT NULL auto_increment, `name` varchar(255) binary NOT NULL default '', `url_name` varchar(255) binary NOT NULL default '', PRIMARY KEY  (`id`), KEY `tags_i1` (`url_name`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_themes' already exists
+CREATE TABLE `piwigo_themes` ( `id` varchar(64) NOT NULL default '', `version` varchar(64) NOT NULL default '0', `name` varchar(64) default NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_upgrade' already exists
+CREATE TABLE `piwigo_upgrade` ( `id` varchar(20) NOT NULL default '', `applied` datetime NOT NULL default '0000-00-00 00:00:00', `description` varchar(255) default NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_access' already exists
+CREATE TABLE `piwigo_user_access` ( `user_id` smallint(5) NOT NULL default '0', `cat_id` smallint(5) unsigned NOT NULL default '0', PRIMARY KEY  (`user_id`,`cat_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_cache' already exists
+CREATE TABLE `piwigo_user_cache` ( `user_id` smallint(5) NOT NULL default '0', `need_update` enum('true','false') NOT NULL default 'true', `cache_update_time` integer unsigned NOT NULL default 0, `forbidden_categories` mediumtext, `nb_total_images` mediumint(8) unsigned default NULL, `image_access_type` enum('NOT IN','IN') NOT NULL default 'NOT IN', `image_access_list` mediumtext default NULL, PRIMARY KEY  (`user_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_cache_categories' already exists
+CREATE TABLE `piwigo_user_cache_categories` ( `user_id` smallint(5) NOT NULL default '0', `cat_id` smallint(5) unsigned NOT NULL default '0', `date_last` datetime default NULL, `max_date_last` datetime default NULL, `nb_images` mediumint(8) unsigned NOT NULL default '0', `count_images` mediumint(8) unsigned default '0', `count_categories` mediumint(8) unsigned default '0', `user_representative_picture_id` mediumint(8) unsigned default NULL, PRIMARY KEY  (`user_id`,`cat_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_feed' already exists
+CREATE TABLE `piwigo_user_feed` ( `id` varchar(50) binary NOT NULL default '', `user_id` smallint(5) NOT NULL default '0', `last_check` datetime default NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_group' already exists
+CREATE TABLE `piwigo_user_group` ( `user_id` smallint(5) NOT NULL default '0', `group_id` smallint(5) unsigned NOT NULL default '0', PRIMARY KEY  (`group_id`,`user_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_infos' already exists
+CREATE TABLE `piwigo_user_infos` ( `user_id` smallint(5) NOT NULL default '0', `nb_image_page` smallint(3) unsigned NOT NULL default '15', `status` enum('webmaster','admin','normal','generic','guest') NOT NULL default 'guest', `language` varchar(50) NOT NULL default 'en_UK', `expand` enum('true','false') NOT NULL default 'false', `show_nb_comments` enum('true','false') NOT NULL default 'false', `show_nb_hits` enum('true','false') NOT NULL default 'false', `recent_period` tinyint(3) unsigned NOT NULL default '7', `theme` varchar(255) NOT NULL default 'elegant', `registration_date` datetime NOT NULL default '0000-00-00 00:00:00', `enabled_high` enum('true','false') NOT NULL default 'true', `level` tinyint unsigned NOT NULL default '0', `activation_key` char(20) default NULL, UNIQUE KEY `user_infos_ui1` (`user_id`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_user_mail_notification' already exists
+CREATE TABLE `piwigo_user_mail_notification` ( `user_id` smallint(5) NOT NULL default '0', `check_key` varchar(16) binary NOT NULL default '', `enabled` enum('true','false') NOT NULL default 'false', `last_send` datetime default NULL, PRIMARY KEY  (`user_id`), UNIQUE KEY `user_mail_notification_ui1` (`check_key`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1050] Table 'piwigo_users' already exists
+CREATE TABLE `piwigo_users` ( `id` smallint(5) NOT NULL auto_increment, `username` varchar(100) binary NOT NULL default '', `password` varchar(255) default NULL, `mail_address` varchar(255) default NULL, PRIMARY KEY  (`id`), UNIQUE KEY `users_ui1` (`username`) ) ENGINE=MyISAM DEFAULT CHARACTER SET utf8; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'activate_comments' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('activate_comments','true','Global parameter for usage of comments system'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nb_comment_page' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nb_comment_page','10','number of comments to display on each page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'log' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('log','true','keep an history of visits on your website'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'comments_validation' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('comments_validation','false','administrators validate users comments before becoming visible'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'comments_forall' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('comments_forall','false','even guest not registered can post comments'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'comments_order' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('comments_order','ASC','comments order on picture page and cie'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'comments_author_mandatory' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('comments_author_mandatory','false','Comment author is mandatory'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'comments_email_mandatory' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('comments_email_mandatory','false','Comment email is mandatory'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'user_can_delete_comment' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('user_can_delete_comment','false','administrators can allow user delete their own comments'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'user_can_edit_comment' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('user_can_edit_comment','false','administrators can allow user edit their own comments'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'email_admin_on_comment_edition' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('email_admin_on_comment_edition','false','Send an email to the administrators when a comment is modified'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'email_admin_on_comment_deletion' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('email_admin_on_comment_deletion','false','Send an email to the administrators when a comment is deleted'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'gallery_locked' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('gallery_locked','false','Lock your gallery temporary for non admin users'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'gallery_title' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('gallery_title','','Title at top of each page and for RSS feed'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'rate' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('rate','true','Rating pictures feature is enabled'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'rate_anonymous' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('rate_anonymous','true','Rating pictures feature is also enabled for visitors'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'page_banner' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('page_banner','','html displayed on the top each page of your gallery'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'history_admin' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('history_admin','false','keep a history of administrator visits on your website'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'history_guest' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('history_guest','true','keep a history of guest visits on your website'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'allow_user_registration' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('allow_user_registration','true','allow visitors to register?'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'allow_user_customization' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('allow_user_customization','true','allow users to customize their gallery?'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nb_categories_page' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nb_categories_page','12','Param for categories pagination'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nbm_send_html_mail' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nbm_send_html_mail','true','Send mail on HTML format for notification by mail'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nbm_send_mail_as' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nbm_send_mail_as','','Send mail as param value for notification by mail'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nbm_send_detailed_content' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nbm_send_detailed_content','true','Send detailed content for notification by mail'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nbm_complementary_mail_content' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nbm_complementary_mail_content','','Complementary mail content for notification by mail'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nbm_send_recent_post_dates' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('nbm_send_recent_post_dates','true','Send recent post by dates for notification by mail'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'email_admin_on_new_user' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('email_admin_on_new_user','false','Send an email to theadministrators when a user registers'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'email_admin_on_comment' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('email_admin_on_comment','false','Send an email to the administrators when a valid comment is entered'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'email_admin_on_comment_validation' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('email_admin_on_comment_validation','true','Send an email to the administrators when a comment requires validation'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'obligatory_user_mail_address' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('obligatory_user_mail_address','false','Mail address is obligatory for users'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'c13y_ignore' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('c13y_ignore',null,'List of ignored anomalies'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'extents_for_templates' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('extents_for_templates','a:0:{}','Actived template-extension(s)'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'blk_menubar' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('blk_menubar','','Menubar options'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'menubar_filter_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('menubar_filter_icon','false','Display filter icon'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_sort_order_input' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_sort_order_input','true','Display image order selection list'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_flat_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_flat_icon','false','Display flat icon'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_posted_date_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_posted_date_icon','true','Display calendar by posted date'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_created_date_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_created_date_icon','true','Display calendar by creation date icon'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_slideshow_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_slideshow_icon','true','Display slideshow icon'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'index_new_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('index_new_icon','true','Display new icons next albums and pictures'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_metadata_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_metadata_icon','true','Display metadata icon on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_slideshow_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_slideshow_icon','true','Display slideshow icon on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_favorite_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_favorite_icon','true','Display favorite icon on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_download_icon' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_download_icon','true','Display download icon on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_navigation_icons' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_navigation_icons','true','Display navigation icons on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_navigation_thumb' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_navigation_thumb','true','Display navigation thumbnails on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_menu' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('picture_menu','false','Show menubar on picture page'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'picture_informations' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ( 'picture_informations', 'a:11:{s:6:"author";b:1;s:10:"created_on";b:1;s:9:"posted_on";b:1;s:10:"dimensions";b:0;s:4:"file";b:0;s:8:"filesize";b:0;s:4:"tags";b:1;s:10:"categories";b:1;s:6:"visits";b:1;s:12:"rating_score";b:1;s:13:"privacy_level";b:1;}', 'Information displayed on picture page' ); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'week_starts_on' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('week_starts_on','monday','Monday may not be the first day of the week'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'updates_ignored' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('updates_ignored','a:3:{s:7:"plugins";a:0:{}s:6:"themes";a:0:{}s:9:"languages";a:0:{}}','Extensions ignored for update'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'order_by' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('order_by','ORDER BY date_available DESC, file ASC, id ASC','default photo order'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'order_by_inside_category' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value,comment) VALUES ('order_by_inside_category','ORDER BY date_available DESC, file ASC, id ASC','default photo order inside category'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'original_resize' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value) VALUES ('original_resize','false'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'original_resize_maxwidth' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value) VALUES ('original_resize_maxwidth','2016'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'original_resize_maxheight' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value) VALUES ('original_resize_maxheight','2016'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'original_resize_quality' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value) VALUES ('original_resize_quality','95'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'mobile_theme' for key 'PRIMARY'
+INSERT INTO piwigo_config (param,value) VALUES ('mobile_theme',null); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'secret_key' for key 'PRIMARY'
+
+INSERT INTO piwigo_config (param,value,comment) 
+   VALUES ('secret_key',md5(RAND()),
+   'a secret key specific to the gallery for internal use'); in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'af_ZA' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('af_ZA',
+         '2.5.1',
+         'Afrikaans [ZA]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'es_AR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('es_AR',
+         '2.5.0',
+         'Argentina [AR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'az_AZ' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('az_AZ',
+         '2.5.0',
+         'Azərbaycanca [AZ]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'id_ID' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('id_ID',
+         '2.5.0',
+         'Bahasa Indonesia [ID]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'pt_BR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('pt_BR',
+         '2.5.1',
+         'Brasil [BR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'br_FR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('br_FR',
+         '2.5.1',
+         'Brezhoneg [FR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ca_ES' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ca_ES',
+         '2.5.0',
+         'Català [CA]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'da_DK' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('da_DK',
+         '2.5.1',
+         'Dansk [DK]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'de_DE' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('de_DE',
+         '2.5.0',
+         'Deutsch [DE]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'dv_MV' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('dv_MV',
+         '2.5.0',
+         'Dhivehi [MV]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'en_GB' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('en_GB',
+         '2.5.0',
+         'English [GB]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'en_UK' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('en_UK',
+         '2.5.0',
+         'English [UK]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'es_ES' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('es_ES',
+         '2.5.1',
+         'Español [ES]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'eo_EO' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('eo_EO',
+         '2.5.2',
+         'Esperanto [EO]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'et_EE' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('et_EE',
+         '2.5.1',
+         'Estonian [EE]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'fi_FI' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('fi_FI',
+         '2.5.1',
+         'Finnish [FI]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'fr_FR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('fr_FR',
+         '2.5.0',
+         'Français [FR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'fr_CA' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('fr_CA',
+         '2.5.0',
+         'Français [QC]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'gl_ES' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('gl_ES',
+         '2.5.2',
+         'Galego [ES]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'hr_HR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('hr_HR',
+         '2.5.0',
+         'Hrvatski [HR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'it_IT' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('it_IT',
+         '2.5.2',
+         'Italiano [IT]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'lv_LV' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('lv_LV',
+         '2.5.0',
+         'Latviešu [LV]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'lt_LT' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('lt_LT',
+         '2.5.4',
+         'Lietuviu [LT]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'hu_HU' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('hu_HU',
+         '2.5.0',
+         'Magyar [HU]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ms_MY' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ms_MY',
+         '2.5.0',
+         'Malay [MY]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nl_NL' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('nl_NL',
+         '2.5.1',
+         'Nederlands [NL]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nb_NO' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('nb_NO',
+         '2.5.1',
+         'Norwegian [NO]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'nn_NO' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('nn_NO',
+         '2.5.2',
+         'Norwegian nynorsk [NO]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'pl_PL' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('pl_PL',
+         '2.5.0',
+         'Polski [PL]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'pt_PT' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('pt_PT',
+         '2.5.1',
+         'Português [PT]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ro_RO' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ro_RO',
+         '2.5.1',
+         'Română [RO]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'sk_SK' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('sk_SK',
+         '2.5.1',
+         'Slovensky [SK]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'sl_SI' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('sl_SI',
+         '2.5.3',
+         'Slovenšcina [SI]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'sh_RS' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('sh_RS',
+         '2.5.0',
+         'Srpski [SR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'sv_SE' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('sv_SE',
+         '2.5.1',
+         'Svenska [SE]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'vi_VN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('vi_VN',
+         '2.5.2',
+         'Tiếng Việt [VN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'tr_TR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('tr_TR',
+         '2.5.2',
+         'Türkçe [TR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'is_IS' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('is_IS',
+         '2.5.0',
+         'Íslenska [IS]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'cs_CZ' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('cs_CZ',
+         '2.5.1',
+         'Česky [CZ]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'el_GR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('el_GR',
+         '2.5.0',
+         'Ελληνικά [GR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'bg_BG' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('bg_BG',
+         '2.5.2',
+         'Български [BG]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'mk_MK' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('mk_MK',
+         '2.5.0',
+         'Македонски [MK]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'mn_MN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('mn_MN',
+         '2.5.2',
+         'Монгол хэл [MN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ru_RU' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ru_RU',
+         '2.5.2',
+         'Русский [RU]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'sr_RS' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('sr_RS',
+         '2.5.1',
+         'Српски [SR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'uk_UA' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('uk_UA',
+         '2.5.0',
+         'Українська [UA]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'he_IL' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('he_IL',
+         '2.5.1',
+         'עברית [IL]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ar_SA' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ar_SA',
+         '2.5.0',
+         'العربية [AR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'fa_IR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('fa_IR',
+         '2.5.1',
+         'پارسی [IR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'kok_IN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('kok_IN',
+         '2.5.0',
+         'कोंकणी [IN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'bn_IN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('bn_IN',
+         '2.5.0',
+         'বাংলা[IN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ta_IN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ta_IN',
+         '2.5.1',
+         'தமிழ் [IN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'kn_IN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('kn_IN',
+         '2.5.2',
+         'ಕನ್ನಡ [IN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'th_TH' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('th_TH',
+         '2.5.0',
+         'ภาษาไทย [TH]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ka_GE' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ka_GE',
+         '2.5.0',
+         'ქართული [GE]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'km_KH' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('km_KH',
+         '2.5.0',
+         'ភាសាខ្មែរ [KH]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'zh_TW' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('zh_TW',
+         '2.5.2',
+         '中文 (繁體) [TW]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'zh_HK' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('zh_HK',
+         '2.5.2',
+         '中文 (香港) [HK]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ja_JP' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ja_JP',
+         '2.5.1',
+         '日本語 [JP]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'zh_CN' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('zh_CN',
+         '2.5.0',
+         '简体中文 [CN]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry 'ko_KR' for key 'PRIMARY'
+
+INSERT INTO piwigo_languages
+  (id, version, name)
+  VALUES('ko_KR',
+         '2.5.2',
+         '한국어 [KR]')
+; in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry '1' for key 'PRIMARY'
+
+INSERT  INTO piwigo_sites
+  (id,galleries_url)
+  VALUES('1','./galleries/') in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry '1' for key 'PRIMARY'
+
+INSERT  INTO piwigo_users
+  (id,username,password,mail_address)
+  VALUES('1','mallen','244b772ea28c9fc516b29dd4e7efd804','matt@mattallenwrenches.com')
+  , ('2','guest',NULL,NULL) in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry '1' for key 'user_infos_ui1'
+
+INSERT  INTO piwigo_user_infos
+  (nb_image_page,language,expand,show_nb_comments,show_nb_hits,recent_period,theme,enabled_high,level,activation_key,user_id,status,registration_date)
+  VALUES('15','en_GB','false','false','false','7','clear','true','8',NULL,'1','webmaster','2014-01-02 09:36:21')
+  , ('15','en_GB','false','false','false','7','clear','true','0',NULL,'2','guest','2014-01-02 09:36:21') in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  [mysql error 1062] Duplicate entry '61' for key 'PRIMARY'
+
+INSERT  INTO piwigo_upgrade
+  (id,applied,description)
+  VALUES('61','2014-01-02 09:36:21','upgrade included in installation')
+  , ('62','2014-01-02 09:36:21','upgrade included in installation')
+  , ('63','2014-01-02 09:36:21','upgrade included in installation')
+  , ('64','2014-01-02 09:36:21','upgrade included in installation')
+  , ('65','2014-01-02 09:36:21','upgrade included in installation')
+  , ('66','2014-01-02 09:36:21','upgrade included in installation')
+  , ('67','2014-01-02 09:36:21','upgrade included in installation')
+  , ('68','2014-01-02 09:36:21','upgrade included in installation')
+  , ('69','2014-01-02 09:36:21','upgrade included in installation')
+  , ('70','2014-01-02 09:36:21','upgrade included in installation')
+  , ('71','2014-01-02 09:36:21','upgrade included in installation')
+  , ('72','2014-01-02 09:36:21','upgrade included in installation')
+  , ('73','2014-01-02 09:36:21','upgrade included in installation')
+  , ('74','2014-01-02  in /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php on line 834
+[02-Jan-2014 09:36:21] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php:833) in /home3/mallen/public_html/image-gallery/include/functions_user.inc.php on line 1088
+[02-Jan-2014 09:36:21] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cookie - headers already sent by (output started at /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php:833) in /home3/mallen/public_html/image-gallery/include/functions_user.inc.php on line 1097
+[02-Jan-2014 09:36:21] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home3/mallen/public_html/image-gallery/include/dblayer/functions_mysqli.inc.php:833) in /home3/mallen/public_html/image-gallery/include/functions_user.inc.php on line 1097
