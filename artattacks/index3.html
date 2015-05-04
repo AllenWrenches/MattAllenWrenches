@@ -21,9 +21,24 @@
 <body>
 	<div class="container">
 		
+			<header class="codrops-header">
+			
+				<h1>Animated Responsive Image Grid</h1>
+				<h2>Cycling through a set of images in a responsive grid.</h2>
+				
+				<nav class="codrops-demos">
+					<a href="index.html">Demo 1</a>
+					<a href="index2.html">Demo 2</a>
+					<a class="current-demo" href="index3.html">Demo 3</a>
+					<a href="index4.html">Demo 4</a>
+					<a href="index5.html">Demo 5</a>
+				</nav>
+
+			</header>
+		
 		<section class="main">
 
-			<div id="ri-grid" class="ri-grid ri-grid-size-3">
+			<div id="ri-grid" class="ri-grid ri-grid-size-1 ri-shadow">
 				<img class="ri-loading-image" src="images/loading.gif"/>
 				<ul>
 					<li><a href="#"><img src="images/medium/1.jpg"/></a></li>
@@ -83,47 +98,25 @@
 				</ul>
 			</div>
 			
-			<header class="codrops-header-special">
-		
-				<h1>Animated Responsive Image Grid</h1>
-				<br>
-				<h2>Cycling through a set of images in a responsive grid.</h2>
-				
-			</header>
-
+			<p class="codrops-info"><strong>Demo 1:</strong> Random animations / 55% container width / 3s between switching </p>
+			
 		</section>
-		
-	</div>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	
+  </div>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.gridrotator.js"></script>
 	<script type="text/javascript">	
 		$(function() {
 		
 			$( '#ri-grid' ).gridrotator( {
-				rows : 4,
-				columns : 8,
-				maxStep : 2,
-				interval : 2000,
-				w1024 : {
-					rows : 5,
-					columns : 6
-				},
-				w768 : {
-					rows : 5,
-					columns : 5
-				},
-				w480 : {
-					rows : 6,
-					columns : 4
-				},
 				w320 : {
-					rows : 7,
+					rows : 3,
 					columns : 4
 				},
 				w240 : {
-					rows : 7,
+					rows : 3,
 					columns : 3
-				},
+				}
 			} );
 		
 		});
